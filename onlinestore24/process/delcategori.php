@@ -1,0 +1,23 @@
+
+ <?php
+ session_start();
+ include '../library/configServer.php';
+ include '../library/consulSQL.php';
+
+ sleep(5);
+ $codeCateg= $_POST['categ-code'];
+ $cons= ejecutarSQL::consultar("select * from categoria where CodigoCat='$codeCateg'");
+ $totalcateg = mysqli_num_rows($cons);
+
+ if($totalcateg>0){
+ if(consultasSQL::DeleteSQL('categoria', "CodigoCat='".$codeCateg."'")){
+ echo '<img src="assets/img/ok.png" class="center-all-contens"><br><p class="lead textcenter">Categoría eliminada éxitosamente</p>';
+
+ }else{
+ echo '<img src="assets/img/error.png" class="center-all-contens"><br><p class="lead textcenter">Ha ocurrido un error.<br>Por favor intente nuevamente</p>';
+
+ }
+ }else{
+ echo '<img src="assets/img/error.png" class="center-all-contens"><br><p class="lead textcenter">El código de la categoria no existe</p>';
+
+ }
