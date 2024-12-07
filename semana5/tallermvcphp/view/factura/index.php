@@ -24,7 +24,7 @@ ini_set('display_startup_errors', 1);
  <div class="mb-3"></div>
  <div class="mb-3">
  <a href="create.php" class="btn btn-primary">Agregar</a>
- <a href="#" target="_blank" class="btn btn-info">Imprimir</a>
+ <a href="#" target="_blank" class="btn btn-info"></a>
  </div>
  <div class="table-responsive table-scroll"
  data-mdb-perfect-scrollbar="true" style="position: relative; height:700px;">

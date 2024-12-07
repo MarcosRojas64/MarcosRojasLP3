@@ -6,4 +6,5 @@
 
    $idEstudiante = $_REQUEST['id'];  
    $object->delete($idEstudiante);  
+   
 ?>

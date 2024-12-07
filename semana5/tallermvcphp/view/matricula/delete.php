@@ -5,5 +5,8 @@
    $object = new matriculaController();
 
    $idMatricula = $_REQUEST['id'];  
-   $object->delete($idMatricula);  
+   $object->eliminar($idMatricula);  
 ?>
+<script>
+    window.location = './index.php';
+</script>

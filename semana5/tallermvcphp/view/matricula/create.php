@@ -6,12 +6,13 @@
        header('location: ../usuario/login.php');
    }
 
-   $Usuario = $_SESSION["usuario"];
+   $alias = $_SESSION["usuario"];
    require_once(CONTROLLER_PATH.'matriculaController.php');
    $object = new matriculaController();
-   $estudiantes = $object->combolistEstudiantes ();
-   $usuarios = $object->combolistUsuario($Usuario);
-   $cursos = $object->combolistCursos();
+   $estudiantes = $object->cargarDesplegableClientes ();
+   $usuarios = $object->cargarDesplegableUsuarios($alias);
+   $cursos = $object->cargarDesplegableServicios();
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -19,7 +20,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-   <title>Matriculas</title>
+   <title>vehículo</title>
 </head>
 <body>
    <?php
@@ -31,40 +32,54 @@
        </div>
        <form id="formPersona" action="store.php" method="post" class="g-3 needs-validation" novalidate>
            <div class="mb-3">
-               <label for="fecha" class="form-label">Fecha</label>
+               <label for="fechaingreso" class="form-label">Fecha de Ingeso del vehículo</label>
                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil square-o bigicon"></i></span>
-               <input type="date" class="form-control" id="fecha" name="fecha" autofocus required>
+               <input type="date" class="form-control" id="fechaingreso" name="fechaingreso" autofocus required>
                <div class="invalid-feedback">ingrese o seleccione fecha válida!</div>
            </div>
+             
+         <div class="mb-3">
+            <label for="Placa" class="form-label">Ingrese chapa de vehículo</label>
+            <input type="text" class="form-control" id="Placa" name="Placa" required>
+            <div class="invalid-feedback">ingrese un numero de telefono válido!</div>
+
+         </div> 
+         <div class="mb-3">
+            <label for="Marca" class="form-label">Marca de vehículo</label>
+            <input type="text" class="form-control" id="Marca" name="Marca" required>
+            <div class="invalid-feedback">ingrese un apellido válido!</div>
+         </div>
+         <div class="mb-3">
+            <label for="Modelo" class="form-label"> Modelo del vehículo</label>
+            <input type="text" class="form-control" id="Modelo" name="Modelo" required>
+            <div class="invalid-feedback">ingrese un apellido válido!</div>
+         </div>
+         <div class="mb-3">
+            <label for="Anho" class="form-label">Ingrese  Año del vehículo</label>
+            <input type="number" class="form-control" id="Anho" name="Anho" required>
+            <div class="invalid-feedback">ingrese un numero de telefono válido!</div>
+
+         </div> 
            <div class="mb-3">
-               <label for="idEstudiante" class="form-label">Estudiante</label>
-               <select class="form-control" name="idEstudiante" id="idEstudiante" required>
+               <label for="IdCliente" class="form-label">Cliente</label>
+               <select class="form-control" name="IdCliente" id="IdCliente" required>
                    <option selected disabled value="">No especificado</option>
                    <?php foreach ($estudiantes as $estudiante) { ?>
-                      <option value="<?=$estudiante['idEstudiante']?>"><?=$estudiante['estudiante']?></option>
+                      <option value="<?=$estudiante['Idpersonas']?>"><?=$estudiante['Nombre']?></option>
                    <?php } ?>
                </select>
                <div class="invalid-feedback">seleccione un elemento válido!</div>
            </div>
            <div class="mb-3">
-               <label for="idUsuario" class="form-label">Usuario</label>
-               <select class="form-control" name="idUsuario" id="idUsuario">
-                   <?php foreach ($usuarios as $user) { ?>
-                      <option selected value="<?=$user['idUsuario']?>"><?=$user['idUsuario']."-".$user['alias']?></option>
+               <label for="IdServicio" class="form-label">Servicio Disponible</label>
+               <select class="form-control" name="IdServicio" id="IdServicio">
+                   <?php foreach ($cursos as $cursos) { ?>
+                      <option selected value="<?=$cursos['IdServicio']?>"><?=$cursos['Descripcion']?></option>
                    <?php } ?>
                </select>
                <div class="invalid-feedback">seleccione un elemento válido!</div>
            </div>
-           <div class="mb-3">
-               <label for="idCurso" class="form-label">Curso</label>
-               <select class="form-control" name="idCurso" id="idCurso" required>
-                   <option selected disabled value="">No especificado</option>
-                   <?php foreach ($cursos as $curso) { ?>
-                      <option value="<?=$curso['idCurso']?>"><?=$curso['nombre']?></option>
-                   <?php } ?>
-               </select>
-               <div class="invalid-feedback">seleccione un elemento válido!</div>
-           </div>
+           
            <button type="submit" class="btn btn-primary btn-lg col-4">Guardar</button>
        </form>
    </div>

@@ -1,1 +1,34 @@
-[]
+[
+    {
+        "idTmpDetalle": 1,
+        "idConcepto": "1",
+        "concepto": "FRONTEND HTML5 BOOSTRAP 5",
+        "cantidad": "1",
+        "unitario": "350000",
+        "sesion": "admin"
+    },
+    {
+        "idTmpDetalle": 2,
+        "idConcepto": "1",
+        "concepto": "FRONTEND HTML5 BOOSTRAP 5",
+        "cantidad": "1",
+        "unitario": "350000",
+        "sesion": "admin"
+    },
+    {
+        "idTmpDetalle": 3,
+        "idConcepto": "2",
+        "concepto": "BACKEND PHP 8 MYSQL 8",
+        "cantidad": "1",
+        "unitario": "550000",
+        "sesion": "admin"
+    },
+    {
+        "idTmpDetalle": 4,
+        "idConcepto": "3",
+        "concepto": "MODELADO DE SOFTWARE POO CON UML",
+        "cantidad": "1",
+        "unitario": "250000",
+        "sesion": "admin"
+    }
+]

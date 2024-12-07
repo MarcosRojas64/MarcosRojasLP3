@@ -24,40 +24,28 @@
       </div>
       <form id="formPersona" action="update.php" method="post" class="g-3 needs-validation" novalidate>
          <div class="mb-3">
-            <label for="id" class="form-label">ID Estudiante</label>
+            <label for="id" class="form-label">ID Cliente </label>
             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
             <input value="<?=$estudiante[0]?>" type="text" class="form-control" id="id" name="id" readonly>
          </div>
          <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
+            <label for="Nombre" class="form-label">Nombre Apellido</label>
             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
-            <input value="<?=$estudiante[1]?>" type="text" class="form-control" id="nombre" name="nombre" autofocus required>
-            <div class="invalid-feedback">ingrese un nombre válido!</div>
+            <input value="<?=$estudiante[1]?>" type="text" class="form-control" id="Nombre" name="Nombre" autofocus required>
+            <div class="invalid-feedback">ingrese un Nombre y Apellido válido!</div>
          </div>
          <div class="mb-3">
-            <label for="apellido" class="form-label">Apellido</label>
-            <input value="<?=$estudiante[2]?>" type="text" class="form-control" id="apellido" name="apellido" required>
-            <div class="invalid-feedback">ingrese un apellido válido!</div>          
-         </div>
+            <label for="Telefono" class="form-label">Telefono</label>
+            <input value="<?=$estudiante[2]?>" type="number" class="form-control" id="Telefono" name="Telefono" required>
+            <div class="invalid-feedback">ingrese un Telefono válida!</div>          
+         </div>           
          <div class="mb-3">
-            <label for="idCiudad" class="form-label">Código ciudad</label>
-            <select class="form-control" name="idCiudad" id="idCiudad" required>
-               <option selected disabled value="">No especificado</option>
-               <?php foreach ($ciudades as $ciudad) { 
-                  if ($estudiante[3] == $ciudad['idCiudad']) { ?>
-                     <option selected="selected" value="<?=$ciudad['idCiudad']?>"><?=$ciudad['nombre']?></option> 
-                  <?php } else { ?>
-                     <option value="<?=$ciudad['idCiudad']?>"><?=$ciudad['nombre']?></option> 
-                  <?php } 
-               }?>
-            </select>
-            <div class="invalid-feedback">seleccione un elemento válido!</div>
+            <label for="Direccion" class="form-label">Ingrese su Ciudad</label>
+            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
+            <input value="<?=$estudiante[3]?>" type="text" class="form-control" id="Direccion" name="Direccion" autofocus required>
+            <div class="invalid-feedback">ingrese un Ciudad válido!</div>
          </div>
-         <div class="mb-3">
-            <label for="cin" class="form-label">C. I. Nº</label>
-            <input value="<?=$estudiante[4]?>" type="number" class="form-control" id="cin" name="cin" required>
-            <div class="invalid-feedback">ingrese una cédula válida!</div>          
-         </div>            
+         
          <button type="submit" class="btn btn-primary">Actualizar</button>
       </form>
    </div>

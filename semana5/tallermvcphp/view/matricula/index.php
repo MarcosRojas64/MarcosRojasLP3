@@ -2,7 +2,7 @@
     include_once ($_SERVER['DOCUMENT_ROOT'].'/semana5/tallermvcphp/routes.php');
     require_once(CONTROLLER_PATH.'matriculaController.php');
     $object = new matriculaController();
-    $rows = $object->select();
+    $rows = $object->listar();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -21,29 +21,38 @@
             <div class="mb-3"></div>
             <div class="mb-3">
                 <a href="create.php" class="btn btn-primary">Agregar</a>
-                <a href="javascript:imprimirWindow('ventana')" class="btn btn-info">Imprimir</a>
+                <a href="javascript:imprimirWindow('ventana')" class="btn btn-info"></a>
             </div>
             <div class="table-responsive table-scroll" 
             data-mdb-perfect-scrollbar="true" style="position: relative; height:700px;">
                 <table id="myTabla" class="table table-striped mb-0">
                     <thead style="background-color: #002d72;">
                         <tr>
-                            <th scope="col">MATRICULA</th>
-                            <th scope="col">NOMBRE</th>
-                            <th scope="col">APELLIDO</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Fecha de Ingreso</th>
+                            <th scope="col">Placa</th>
+                            <th scope="col">Marca</th>
+                            <th scope="col">Modelo</th>
+                            <th scope="col">Anho</th>
                             <th scope="col">OPERACIONES</th>
                         </tr>
                     </thead>
                     <tbody>
                     <?php foreach ((array) $rows as $row) { ?>
                         <tr>
-                            <td><?=$row['idMatricula']?></td>
-                            <td><?=$row['nombre']?></td>
-                            <td><?=$row['apellido']?></td>
+                            <td><?=$row['IdVehiculo']?></td>
+                            <td><?=$row['fechaingreso']?></td>
+                            <td><?=$row['Placa']?></td>
+                            <td><?=$row['Marca']?></td>
+                            <td><?=$row['Modelo']?></td>
+                            <td><?=$row['Anho']?></td>
+                            
+                            
+                            
                             <td>
-                                <a class="btn btn-info" data-bs-toggle="modal" data-bs-target="#idver<?=$row['idMatricula']?>">Ver</a>
-                                <a href="edit.php?id=<?=$row['idMatricula']?>" class="btn btn-warning">Editar</a>
-                                <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#iddel<?=$row['idMatricula']?>">Eliminar</a>
+                                <a class="btn btn-info" data-bs-toggle="modal" data-bs-target="#idver<?=$row['IdVehiculo']?>">Ver</a>
+                                <a href="edit.php?id=<?=$row['IdVehiculo']?>" class="btn btn-warning">Editar</a>
+                                <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#iddel<?=$row['IdVehiculo']?>">Eliminar</a>
 
                                 <!-- modal para ver y del -->
                                 <?php 
@@ -70,17 +79,25 @@
                 <tr>
                     <th colspan="1" scope="col">MATRICULA</th>
                     <th colspan="1" scope="col">FECHA</th>                           
-                    <th colspan="3" scope="col">NOMBRE</th>
-                    <th colspan="3" scope="col">APELLIDO</th>
+                    <th colspan="3" scope="col">placa</th>
+                    <th colspan="3" scope="col">Marca</th>
+                    <th colspan="4" scope="col">Modelo</th>                           
+                    <th colspan="4" scope="col">Anho</th>
+                  
                 </tr>
             </thead>
             <tbody>
             <?php foreach ($rows as $row) { ?>
                 <tr>
-                    <td colspan="1"><?=$row['idMatricula']?></td>
-                    <td colspan="1"><?=$row['fecha']?></td>                          
-                    <td colspan="4"><?=$row['nombre']?></td>
-                    <td colspan="4"><?=$row['apellido']?></td>
+                    <td colspan="1"><?=$row['IdVehiculo']?></td>
+                    <td colspan="1"><?=$row['fechaingreso']?></td>                          
+                    <td colspan="3"><?=$row['Placa']?></td>
+                    <td colspan="3"><?=$row['Marca']?></td>
+                    <td colspan="4"><?=$row['Modelo']?></td>
+                    <td colspan="4"><?=$row['Anho']?></td>
+                    
+                    
+                
                 </tr>
             <?php } ?>
             </tbody>

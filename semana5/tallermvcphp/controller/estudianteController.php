@@ -8,13 +8,13 @@ class estudianteController {
         $this->model = new estudianteModel();
     }
 
-    public function insert($nombre, $apellido, $idCiudad, $cin) {
-        $id = $this->model->insertar($nombre, $apellido, $idCiudad, $cin);
+    public function insert($Nombre, $Telefono, $Direccion) {
+        $id = $this->model->insertar($Nombre, $Telefono, $Direccion);
         return ($id != false) ? header('location: ./index.php') : header('location: ./create.php');
     }
 
-    public function update($id, $nombre, $apellido, $idCiudad, $cin) {
-        return ($this->model->actualizar($id, $nombre, $apellido, $idCiudad, $cin) != false) 
+    public function update($id, $Nombre, $Telefono, $Direccion) {
+        return ($this->model->actualizar($id, $Nombre, $Telefono, $Direccion) != false) 
             ? header('location: ./index.php') 
             : header('location: ./edit.php?id='.$id);
     }
@@ -32,7 +32,7 @@ class estudianteController {
     }
 
     public function combolist() {
-        return ($this->model->cargarDesplegable()) ? $this->model->cargarDesplegable() : false;
+        return ($this->model->listar()) ? $this->model->listar() : false;
     }
 }
 ?>

@@ -18,28 +18,31 @@ $rows = $object->select();
       <div class="container">
          <div class="mb-3">
             <a href="create.php" class="btn btn-primary">Agregar</a>
-            <a href="pdf/estudiantes.php" target="_blank" class="btn btn-info">Imprimir</a>
+            <a href="pdf/estudiantes.php" target="_blank" class="btn btn-info"></a>
          </div>
          <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height:700px;">
             <table id="myTabla" class="table table-striped mb-0">
                <thead style="background-color: #002d72;">
                   <tr>
                      <th scope="col">ID</th>
-                     <th scope="col">NOMBRE</th>
-                     <th scope="col">APELLIDO</th>
+                     <th scope="col">Nombre Apellido</th>
+                     <th scope="col">Telefono</th>
+                     <th scope="col">Direccion</th>
+                  
                      <th scope="col">OPERACIONES</th>
                   </tr>
                </thead>
                <tbody>
                   <?php foreach ((array) $rows as $row) { ?>
                   <tr>
-                     <td><?=$row['idEstudiante']?></td>
-                     <td><?=$row['nombre']?></td>
-                     <td><?=$row['apellido']?></td>
+                     <td><?=$row['Idpersonas']?></td>
+                     <td><?=$row['Nombre']?></td>
+                     <td><?=$row['Telefono']?></td>
+                     <td><?=$row['Direccion']?></td>
                      <td>
-                        <a class="btn btn-info" data-bs-toggle="modal" data-bs-target="#idver<?=$row['idEstudiante']?>">Ver</a>
-                        <a href="edit.php?id=<?=$row['idEstudiante']?>" class="btn btn-warning">Editar</a>
-                        <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#iddel<?=$row['idEstudiante']?>">Eliminar</a>
+                        <a class="btn btn-info" data-bs-toggle="modal" data-bs-target="#idver<?=$row['Idpersonas']?>">Ver</a>
+                        <a href="edit.php?id=<?=$row['Idpersonas']?>" class="btn btn-warning">Editar</a>
+                        <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#iddel<?=$row['Idpersonas']?>">Eliminar</a>
                      </td>
                   </tr>
                   <!-- modal para ver y eliminar -->
@@ -65,18 +68,18 @@ $rows = $object->select();
             <thead>
                <tr>
                   <th colspan="1" scope="col">ID</th>
-                  <th colspan="3" scope="col">NOMBRE</th>
-                  <th colspan="3" scope="col">APELLIDO</th>
-                  <th colspan="3" scope="col">CIUDAD</th>
+                  <th colspan="3" scope="col">Nombre Apellido</th>
+                  <th colspan="3" scope="col">Telefono</th>
+                  <th colspan="3" scope="col">Direccion</th>
                </tr>
             </thead>
             <tbody>
                <?php foreach ($rows as $row) { ?>
                <tr>
-                  <td colspan="1"><?=$row['idEstudiante']?></td>
-                  <td colspan="3"><?=$row['nombre']?></td>
-                  <td colspan="3"><?=$row['apellido']?></td>
-                  <td colspan="3"><?=$row['ciudad']?></td>     
+                  <td colspan="1"><?=$row['Idpersonas']?></td>
+                  <td colspan="3"><?=$row['Nombre']?></td>
+                  <td colspan="3"><?=$row['Telefono']?></td>
+                  <td colspan="3"><?=$row['Direccion']?></td>     
                </tr>
                <?php } ?>
             </tbody>

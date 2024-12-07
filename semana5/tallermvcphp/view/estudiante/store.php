@@ -4,12 +4,12 @@ require_once(CONTROLLER_PATH.'estudianteController.php');
 
 $object = new estudianteController();
 
-$nombre = $_REQUEST['nombre'];
-$apellido = $_REQUEST['apellido'];
-$idCiudad = $_REQUEST['idCiudad'];
-$cin = $_REQUEST['cin'];
+$Nombre = $_REQUEST['Nombre'];
+$Telefono = $_REQUEST['Telefono'];
+$Direccion = $_REQUEST['Direccion'];
 
-$registro = $object->insert($nombre, $apellido, $idCiudad, $cin);
+
+$registro = $object->insert($Nombre, $Telefono, $Direccion);
 ?>
 <script>
    history.replaceState(null, null, location.pathname);

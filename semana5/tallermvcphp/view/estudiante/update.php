@@ -5,12 +5,12 @@
    $object = new estudianteController ();
 
    $idEstudiante = $_REQUEST['id'];
-   $nombre = $_REQUEST['nombre'];
-   $apellido = $_REQUEST['apellido'];
-   $idCiudad = $_REQUEST['idCiudad'];
-   $cin = $_REQUEST['cin'];
+   $nombre = $_REQUEST['Nombre'];
+   $apellido = $_REQUEST['Telefono'];
+   $idCiudad = $_REQUEST['Direccion'];
+
    
-   $object->update($idEstudiante, $nombre, $apellido, $idCiudad, $cin);
+   $object->update($idEstudiante, $nombre, $apellido, $idCiudad);
 ?>
 <script>
    history.replaceState(null, null, location.pathname);

@@ -2,6 +2,8 @@ $("#formLogin").submit(function (e) {
   e.preventDefault();
   var usuario = $.trim($("#usuario").val());
   var clave = $.trim($("#clave").val());
+  console.log(usuario);
+  console.log(clave);
   if (usuario == "" || clave == "") {
       Swal.fire({
           type: "warning",

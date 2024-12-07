@@ -4,14 +4,17 @@
     require_once(CONTROLLER_PATH.'matriculaController.php');
     $object = new matriculaController();
 
-    $idMatricula = $_REQUEST['id'];
-    $fecha = $_REQUEST['fecha'];
-    $idEstudiante = $_REQUEST['idEstudiante'];
-    $idUsuario = $_REQUEST['idUsuario'];
-    $idCurso = $_REQUEST['idCurso'];
+    $idMatricula = $_REQUEST['IdVehiculo'];
+    $fecha = $_REQUEST['fechaingreso'];
+    $idplaca = $_REQUEST['Placa'];
+    $idMarca = $_REQUEST['Marca'];
+    $idModelo = $_REQUEST['Modelo'];
+    $idAnho = $_REQUEST['Anho'];
+    $IdCliente = $_REQUEST['IdCliente'];
+    $IdServicio = $_REQUEST['IdServicio'];
 
-    $object->update($idMatricula, $fecha, $idEstudiante, $idUsuario, $idCurso);
-?>
+    $object->actualizar($idMatricula, $fecha, $idplaca, $idMarca, $idModelo,$idAnho, $IdCliente, $IdServicio);
+?>  
 <script>
-    history.replaceState(null,null,location.pathname);
+   window.location = './index.php';
 </script>

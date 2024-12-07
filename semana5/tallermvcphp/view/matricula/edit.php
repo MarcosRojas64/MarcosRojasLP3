@@ -10,10 +10,10 @@
    require_once(CONTROLLER_PATH.'matriculaController.php');
    $object = new matriculaController();
    $idMatricula = $_GET['id'];
-   $matricula = $object->search($idMatricula);
-   $estudiantes = $object->combolistEstudiantes ();
-   $usuarios = $object->combolistUsuario($Usuario);
-   $cursos = $object->combolistCursos();
+   $matricula = $object->buscar($idMatricula);
+   $estudiantes = $object->cargarDesplegableClientes(); 
+   $usuarios = $object->cargarDesplegableUsuarios($Usuario); 
+   $cursos = $object->cargarDesplegableServicios(); 
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -33,53 +33,64 @@
       </div>
       <form id="formPersona" action="update.php" method="post" class="g-3 needs-validation" novalidate>
          <div class="mb-3">
-            <label for="id" class="form-label">ID Matricula</label>
+            <label for="IdVehiculo" class="form-label">ID Matricula</label>
             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
-            <input value="<?=$matricula['idMatricula']?>" type="text" class="form-control" id="id" name="id" readonly>
+            <input value="<?=$matricula['IdVehiculo']?>" type="text" class="form-control" id="IdVehiculo" name="IdVehiculo" readonly>
          </div>
          <div class="mb-3">
-            <label for="fecha" class="form-label">Fecha</label>
+            <label for="fechaingreso" class="form-label">Fecha</label>
             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
-            <input value="<?=$matricula['fecha']?>" type="date" class="form-control" id="fecha" name="fecha" autofocus required>
+            <input value="<?=$matricula['fechaingreso']?>" type="date" class="form-control" id="fechaingreso" name="fechaingreso" autofocus required>
             <div class="invalid-feedback">ingrese o seleccione fecha válida!</div>
          </div>
          <div class="mb-3">
-            <label for="idEstudiante" class="form-label">Estudiante</label>
-            <select class="form-control" name="idEstudiante" id="idEstudiante" required>
-               <option selected disabled value="">No especificado</option>
-               <?php foreach ($estudiantes as $estudiante) { 
-                   if ($matricula['idEstudiante'] == $estudiante['idEstudiante']) { ?>
-                      <option selected value="<?=$estudiante['idEstudiante']?>"><?=$estudiante['estudiante']?></option> 
-                   <?php } else { ?>
-                      <option value="<?=$estudiante['idEstudiante']?>"><?=$estudiante['estudiante']?></option> 
-                   <?php } 
-               }?>
-            </select>
-            <div class="invalid-feedback">seleccione un elemento válido!</div>
+    <label for="Placa" class="form-label">Placa</label>
+    <input type="text" class="form-control" name="Placa" id="Placa" value="<?= isset($matricula['Placa']) ? $matricula['Placa'] : '' ?>" required>
+    <div class="invalid-feedback">Por favor, ingrese un estudiante válido.</div>
+</div>
+
+<div class="mb-3">
+    <label for="Marca" class="form-label">Marca</label>
+    <input type="text" class="form-control" name="Marca" id="Marca" value="<?= isset($matricula['Marca']) ? $matricula['Marca'] : '' ?>" required>
+    <div class="invalid-feedback">Por favor, ingrese un estudiante válido.</div>
+</div>
+      
+<div class="mb-3">
+    <label for="Modelo" class="form-label">Modelo</label>
+    <input type="text" class="form-control" name="Modelo" id="Modelo" value="<?= isset($matricula['Modelo']) ? $matricula['Modelo'] : '' ?>" required>
+    <div class="invalid-feedback">Por favor, ingrese un estudiante válido.</div>
+</div>
+
+<div class="mb-3">
+    <label for="Anho" class="form-label">Modelo</label>
+    <input type="text" class="form-control" name="Anho" id="Anho" value="<?= isset($matricula['Anho']) ? $matricula['Anho'] : '' ?>" required>
+    <div class="invalid-feedback">Por favor, ingrese un estudiante válido.</div>
+</div>
+<div class="mb-3">
+               <label for="IdCliente" class="form-label">Cliente</label>
+               <select class="form-control" name="IdCliente" id="IdCliente" required>
+                   <option selected disabled value="">No especificado</option>
+                   <?php foreach ($estudiantes as $estudiante) { ?>
+                      <option value="<?=$estudiante['Idpersonas']?>"><?=$estudiante['Nombre']?></option>
+                   <?php } ?>
+               </select>
+               <div class="invalid-feedback">seleccione un elemento válido!</div>
+           </div>
+           <div class="mb-3">
+               <label for="IdServicio" class="form-label">Servicio Disponible</label>
+               <select class="form-control" name="IdServicio" id="IdServicio">
+                   <?php foreach ($cursos as $cursos) { ?>
+                      <option selected value="<?=$cursos['IdServicio']?>"><?=$cursos['Descripcion']?></option>
+                   <?php } ?>
+               </select>
+               <div class="invalid-feedback">seleccione un elemento válido!</div>
+           </div>
          </div>
-         <div class="mb-3">
-            <label for="idUsuario" class="form-label">Usuario</label>
-            <select class="form-control" name="idUsuario" id="idUsuario">
-               <?php foreach ($usuarios as $user) { ?>
-                  <option selected value="<?=$user['idUsuario']?>"><?=$user['idUsuario']."-".$user['alias']?></option> 
-               <?php } ?>
-            </select>
-            <div class="invalid-feedback">seleccione un elemento válido!</div>
-         </div>             
-         <div class="mb-3">
-            <label for="idCurso" class="form-label">Curso</label>
-            <select class="form-control" name="idCurso" id="idCurso" required>
-               <option selected disabled value="">No especificado</option>
-               <?php foreach ($cursos as $curso) { 
-                   if ($matricula['idCurso'] == $curso['idCurso']) { ?>
-                      <option selected value="<?=$curso['idCurso']?>"><?=$curso['nombre']?></option> 
-                   <?php } else { ?>
-                      <option value="<?=$curso['idCurso']?>"><?=$curso['nombre']?></option> 
-                   <?php } 
-               }?>
-            </select>
-            <div class="invalid-feedback">seleccione un elemento válido!</div>
-         </div>
+
+
+
+</div>
+  
          <button type="submit" class="btn btn-primary btn-lg col-4">Guardar</button>
       </form>
    </div>

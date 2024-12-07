@@ -2,64 +2,69 @@
 class estudianteModel {
     private $PDO;
 
-    public function __construct(){
+    public function __construct() {
         include_once ($_SERVER['DOCUMENT_ROOT'].'/semana5/tallermvcphp/routes.php');
         require_once(DAO_PATH.'database.php');
         $data = new dataConex();
         $this->PDO = $data->conexion();
     }
 
-    public function insertar($nombre, $apellido, $idCiudad, $cin) {
-        $sql = 'INSERT INTO estudiantes VALUES (0, :nombre, :apellido, :idCiudad, :cin)';
+    // Insertar un registro en la tabla 'personas'
+    public function insertar($Nombre, $Telefono, $Direccion) {
+        $sql = 'INSERT INTO personas (Idpersonas, Nombre, Telefono, Direccion) 
+                VALUES (0, :Nombre, :Telefono, :Direccion)';
         $statement = $this->PDO->prepare($sql);
-        $statement->bindParam(':nombre', $nombre);
-        $statement->bindParam(':apellido', $apellido);
-        $statement->bindParam(':idCiudad', $idCiudad);
-        $statement->bindParam(':cin', $cin);
+        $statement->bindParam(':Nombre', $Nombre);  
+        $statement->bindParam(':Telefono', $Telefono);
+        $statement->bindParam(':Direccion', $Direccion);
         $statement->execute();
-        return ($this->PDO->lastInsertId());
+        return $this->PDO->lastInsertId();
     }
 
-    public function actualizar($idEstudiante, $nombre, $apellido, $idCiudad, $cin) {
-        $sql = 'UPDATE estudiantes SET nombre = :nombre, apellido = :apellido, idCiudad = :idCiudad, cin = :cin WHERE idEstudiante = :idEstudiante';
+    
+    public function actualizar($Idpersonas, $Nombre, $Telefono, $Direccion) {
+        $sql = 'UPDATE personas 
+                SET Nombre = :Nombre, Telefono = :Telefono, Direccion = :Direccion 
+                WHERE Idpersonas = :Idpersonas';
         $statement = $this->PDO->prepare($sql);
-        $statement->bindParam(':nombre', $nombre);
-        $statement->bindParam(':apellido', $apellido);
-        $statement->bindParam(':idCiudad', $idCiudad);
-        $statement->bindParam(':cin', $cin);
-        $statement->bindParam(':idEstudiante', $idEstudiante);
-        return ($statement->execute()) ? true : false;
+        $statement->bindParam(':Nombre', $Nombre);
+        $statement->bindParam(':Telefono', $Telefono);
+        $statement->bindParam(':Direccion', $Direccion);
+        $statement->bindParam(':Idpersonas', $Idpersonas);
+        return $statement->execute();
     }
 
-    public function eliminar($idEstudiante) {
-        $sql = 'DELETE FROM estudiantes WHERE idEstudiante = :idEstudiante';
+    public function eliminar($Idpersonas) {
+        $sql = 'DELETE FROM personas WHERE Idpersonas = :Idpersonas';
         $statement = $this->PDO->prepare($sql);
-        $statement->bindParam(':idEstudiante', $idEstudiante);
-        return ($statement->execute()) ? true : false;
+        $statement->bindParam(':Idpersonas', $Idpersonas);
+        return $statement->execute();
     }
+
 
     public function listar() {
-        $sql = 'SELECT e.idEstudiante, e.nombre, e.apellido, e.idCiudad, e.cin, c.nombre ciudad 
-                FROM estudiantes e 
-                JOIN ciudades c ON e.idCiudad = c.idCiudad 
-                ORDER BY idEstudiante DESC';
+        $sql = 'SELECT Idpersonas, Nombre, Telefono, Direccion 
+                FROM personas 
+                ORDER BY Idpersonas DESC';
         $statement = $this->PDO->prepare($sql);
         return ($statement->execute()) ? $statement->fetchAll() : false;
     }
 
+  
     public function cargarDesplegable() {
-        $sql = 'SELECT idCiudad, nombre FROM ciudades ORDER BY idCiudad ASC';
+        $sql = 'SELECT IdServicio, Descripcion 
+                FROM servicios 
+                ORDER BY Descripcion ASC';
         $statement = $this->PDO->prepare($sql);
         return ($statement->execute()) ? $statement->fetchAll() : false;
     }
 
-    public function buscar($idEstudiante) {
-        $sql = 'SELECT e.idEstudiante, e.nombre, e.apellido, e.idCiudad, e.cin, c.nombre ciudad 
-                FROM estudiantes e 
-                JOIN ciudades c ON e.idCiudad = c.idCiudad 
-                WHERE idEstudiante = :idEstudiante';
+    public function buscar($Idpersonas) {
+        $sql = 'SELECT Idpersonas, Nombre, Telefono, Direccion 
+                FROM personas 
+                WHERE Idpersonas = :Idpersonas';
         $statement = $this->PDO->prepare($sql);
-        $statement->bindParam(':idEstudiante', $idEstudiante);
+        $statement->bindParam(':Idpersonas', $Idpersonas);
         return ($statement->execute()) ? $statement->fetch() : false;
     }
 }

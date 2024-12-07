@@ -16,19 +16,19 @@ class usuarioModel {
     }
 
     public function buscar($usuario) {
-        $sql = 'SELECT * FROM usuarios WHERE alias=:alias';
+        $sql = 'SELECT * FROM usuarios WHERE alias = :alias';
         $statement = $this->PDO->prepare($sql);
         $statement->bindParam(':alias', $usuario);
         return ($statement->execute()) ? $statement->fetch() : false;
     }
 
-    public function insertar($alias, $clave, $idrol) {
+    public function insertar($alias, $clave, $idRol) {
         $clave = password_hash($clave, PASSWORD_DEFAULT);
-        $sql = 'INSERT INTO usuarios VALUES (0, :alias, :clave, :idrol)';
+        $sql = 'INSERT INTO usuarios VALUES (0, :alias, :clave, :idRol)';
         $statement = $this->PDO->prepare($sql);
         $statement->bindParam(':alias', $alias);
         $statement->bindParam(':clave', $clave);
-        $statement->bindParam(':idrol', $idrol);
+        $statement->bindParam(':idRol', $idRol);
         $statement->execute();
         return ($this->PDO->lastInsertId());
     }

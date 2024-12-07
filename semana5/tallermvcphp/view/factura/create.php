@@ -39,7 +39,7 @@
  <div class="invalid-feedback">ingrese fecha válida!</div>
  </div>
  <div class="col">
- <label for="idEstudiante" class="form-label fw-bolder">Estudiante</label>
+ <label for="idEstudiante" class="form-label fw-bolder">cliente</label>
  <select class="form-control" name="idEstudiante" id="idEstudiante"required>
  <option selected disabled value="">No especificado</option>
  <?php foreach ($estudiantes as $estudiante) { ?>
@@ -49,7 +49,7 @@
  <div class="invalid-feedback">seleccione un elemento válido!</div>
  </div>
  <div class="col">
- <label for="idFormaPago" class="form-label fw-bolder">Forma dePago</label>
+ <label for="idFormaPago" class="form-label fw-bolder">Forma de Pago</label>
  <select class="form-control" name="idFormaPago" id="idFormaPago" required>
  <option selected disabled value="">No especificado</option>
  <?php foreach ($formapagos as $formapago) { ?>

@@ -15,7 +15,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-   <title>Form PHP</title>
+   <title>Agregar Estudiante</title>
 </head>
 <body>
    <?php
@@ -23,35 +23,29 @@
    ?>
    <div class="container">
       <div class="mb-3">
-         <h2>Agregando nuevo registro</h2>
+         <h2>Agregando nuevo Cliente</h2>
       </div>
-      <form id="formPersona" action="store.php" method="post" class="g-3 needs-validation" novalidate>
+      <form id="formPersona" action="store.php" method="post" class="g-3 needs-validation" nova lidate>
          <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
-            <input type="text" class="form-control" id="nombre" name="nombre" autofocus required>
-            <div class="invalid-feedback">ingrese un nombre válido!</div>
+            <label for="Nombre" class="form-label">Nombre y Apellido</label>
+            <input type="text" class="form-control" id="Nombre" name="Nombre" autofocus required>
+            <div class="invalid-feedback">Por favor, ingrese un nombre y apellido válidos.</div>
          </div>
+         
          <div class="mb-3">
-            <label for="apellido" class="form-label">Apellido</label>
-            <input type="text" class="form-control" id="apellido" name="apellido" required>
-            <div class="invalid-feedback">ingrese un apellido válido!</div>
+            <label for="Telefono" class="form-label">Teléfono</label>
+            <input type="number" class="form-control" id="Telefono" name="Telefono" required>
+            <div class="invalid-feedback">Por favor, ingrese un número de teléfono válido.</div>
          </div>
+
+         <form id="formPersona" action="store.php" method="post" class="g-3 needs-validation" nova lidate>
          <div class="mb-3">
-            <label for="idCiudad" class="form-label">Código ciudad</label>
-            <select class="form-control" name="idCiudad" id="idCiudad" required>
-               <option selected disabled value="">No especificado</option>
-               <?php foreach ($ciudades as $ciudad) { ?>
-                  <option value="<?=$ciudad['idCiudad']?>"><?=$ciudad['nombre']?></option> 
-               <?php } ?>
-            </select>
-            <div class="invalid-feedback">seleccione un elemento válido!</div>
+            <label for="Direccion" class="form-label">Ingrese su Ciudad</label>
+            <input type="text" class="form-control" id="Direccion" name="Direccion" autofocus required>
+            <div class="invalid-feedback">Por favor, ingrese un nombre y apellido válidos.</div>
          </div>
-         <div class="mb-3">
-            <label for="cin" class="form-label">C. I. Nº</label>
-            <input type="number" class="form-control" id="cin" name="cin" required>
-            <div class="invalid-feedback">ingrese una cédula válida!</div>
-         </div>           
+         
+
          <button type="submit" class="btn btn-primary btn-lg col-4">Guardar</button>
       </form>
    </div>
